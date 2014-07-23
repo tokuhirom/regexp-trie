@@ -5,6 +5,8 @@ Create complex regular expression from tokens by Trie.
 
 ## SYNOPSIS in GROOVY
 
+	@GrabResolver(name='tokuhirom', root='https://tokuhirom.github.io/maven/releases/')
+	@Grab('me.geso:regexp-trie:0.0.1')
 	import me.geso.regexp_trie.RegexpTrie;
 
 	def trie = new RegexpTrie();
@@ -19,6 +21,24 @@ This module generates regular expression from list of tokens.
 It builds a trie-ized regexp as above.
 
 You can only add plain strings into regular expression. You can't use meta characters in it. `a+b` is treated as `a\+b`, not "more than one a's followed by b".
+
+## Using with Maven
+
+You need to add following snippet into your pom.xml.
+
+	<repositories>
+	  <repository>
+		<id>tokuhirom</id>
+		<url>https://tokuhirom.github.io/maven/releases/</url>
+	  </repository>
+	</repositories>
+	<dependencies>
+	  <dependency>
+		<groupId>me.geso</groupId>
+		<artifactId>regexp-trie</artifactId>
+		<version>0.0.1</version>
+	  </dependency>
+	</dependencies>
 
 ## COPYRIGHT AND LICENSE
 
