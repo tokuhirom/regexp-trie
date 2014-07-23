@@ -51,4 +51,15 @@ public class RegexpTrieTest {
 		assertEquals("(?:c(?:ca)?|[ab])", re);
 	}
 
+	@Test
+	public void testJapanese() {
+		RegexpTrie trie = new RegexpTrie();
+		trie.add("山田太郎");
+		trie.add("山田孝之");
+		trie.add("山田農園");
+		String re = trie.regexp();
+		System.out.println(re);
+		assertEquals("山田(?:太郎|孝之|農園)", re);
+	}
+
 }

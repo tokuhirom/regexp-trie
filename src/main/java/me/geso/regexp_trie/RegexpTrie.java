@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 
 class CharTrie extends TreeMap<String, CharTrie> {
 
-	final static Pattern nonSpecialCharsPattern = Pattern.compile("\\A[A-Za-z0-9_]+\\z");
+	final static Pattern nonSpecialCharsPattern = Pattern.compile("\\A(?:[^\\\\x00-\\\\x7F]|[A-Za-z0-9_])+\\z");
 
 	String regexp() {
 		if (this.containsKey("") && this.size() == 1) {
