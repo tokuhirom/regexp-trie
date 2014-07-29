@@ -6,7 +6,7 @@ Create complex regular expression from tokens by Trie.
 ## SYNOPSIS in GROOVY
 
 	@GrabResolver(name='tokuhirom', root='https://tokuhirom.github.io/maven/releases/')
-	@Grab('me.geso:regexp-trie:0.0.1')
+	@Grab('me.geso:regexp-trie:0.0.2')
 	import me.geso.regexp_trie.RegexpTrie;
 
 	def trie = new RegexpTrie();
