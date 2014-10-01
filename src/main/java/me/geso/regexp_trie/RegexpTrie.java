@@ -24,26 +24,29 @@ package me.geso.regexp_trie;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
 
-class CharTrie extends TreeMap<String, CharTrie> {
+class CharTrie {
 
-	final static Pattern nonSpecialCharsPattern = Pattern.compile("\\A(?:[^\\\\x00-\\\\x7F]|[A-Za-z0-9_])+\\z");
+	private final static Pattern nonSpecialCharsPattern = Pattern
+			.compile("\\A(?:[^\\\\x00-\\\\x7F]|[A-Za-z0-9_])+\\z");
+	private final Map<String, CharTrie> data = new TreeMap<>();
 
 	String regexp() {
-		if (this.containsKey("") && this.size() == 1) {
+		if (this.data.containsKey("") && this.data.size() == 1) {
 			// terminator.
 			return null;
 		}
 
-		List<String> alt = new ArrayList<>();
-		List<String> cc = new ArrayList<>(); // character class?
+		final List<String> alt = new ArrayList<>();
+		final List<String> cc = new ArrayList<>(); // character class?
 		boolean q = false;
-		for (String c : this.keySet()) {
-			String quoted = softQuote(c);
-			if (this.get(c) != null) {
-				String recurse = this.get(c).regexp();
+		for (final String c : this.data.keySet()) {
+			final String quoted = this.softQuote(c);
+			if (this.data.get(c) != null) {
+				final String recurse = this.data.get(c).regexp();
 				if (recurse != null) {
 					alt.add(quoted + recurse);
 				} else {
@@ -53,14 +56,14 @@ class CharTrie extends TreeMap<String, CharTrie> {
 				q = true;
 			}
 		}
-		boolean cconly = alt.isEmpty();
+		final boolean cconly = alt.isEmpty();
 		if (cc.size() > 0) {
 			if (cc.size() == 1) {
 				alt.add(cc.get(0));
 			} else {
-				StringBuilder buf = new StringBuilder();
+				final StringBuilder buf = new StringBuilder();
 				buf.append("[");
-				for (String it : cc) {
+				for (final String it : cc) {
 					buf.append(it);
 				}
 				buf.append("]");
@@ -71,7 +74,7 @@ class CharTrie extends TreeMap<String, CharTrie> {
 		if (alt.size() == 1) {
 			result = alt.get(0);
 		} else {
-			StringBuilder buf = new StringBuilder();
+			final StringBuilder buf = new StringBuilder();
 			buf.append("(?:");
 			for (int i = 0; i < alt.size(); ++i) {
 				buf.append(alt.get(i));
@@ -100,6 +103,18 @@ class CharTrie extends TreeMap<String, CharTrie> {
 			return Pattern.quote(s);
 		}
 	}
+
+	public boolean containsKey(String key) {
+		return this.data.containsKey(key);
+	}
+
+	public void put(String c, CharTrie charTrie) {
+		this.data.put(c, charTrie);
+	}
+
+	public CharTrie get(String c) {
+		return this.data.get(c);
+	}
 }
 
 /**
@@ -108,12 +123,12 @@ class CharTrie extends TreeMap<String, CharTrie> {
  */
 public class RegexpTrie {
 
-	final CharTrie trie = new CharTrie();
+	private final CharTrie trie = new CharTrie();
 
 	public void add(String str) {
-		CharTrie ref = trie;
+		CharTrie ref = this.trie;
 		for (int i = 0; i < str.length(); ++i) {
-			String c = "" + str.charAt(i);
+			final String c = "" + str.charAt(i);
 			if (!ref.containsKey(c)) {
 				ref.put(c, new CharTrie());
 			}
@@ -123,6 +138,6 @@ public class RegexpTrie {
 	}
 
 	public String regexp() {
-		return trie.regexp();
+		return this.trie.regexp();
 	}
 }
