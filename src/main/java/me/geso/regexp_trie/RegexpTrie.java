@@ -118,10 +118,6 @@ class CharTrie {
 	}
 }
 
-/**
- *
- * @author Tokuhiro Matsuno <tokuhirom@gmail.com>
- */
 public class RegexpTrie {
 
 	private final CharTrie trie = new CharTrie();
