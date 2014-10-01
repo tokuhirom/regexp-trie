@@ -25,6 +25,7 @@ package me.geso.regexp_trie;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
 
@@ -43,10 +44,10 @@ class CharTrie {
 		final List<String> alt = new ArrayList<>();
 		final List<String> cc = new ArrayList<>(); // character class?
 		boolean q = false;
-		for (final String c : this.data.keySet()) {
-			final String quoted = this.softQuote(c);
-			if (this.data.get(c) != null) {
-				final String recurse = this.data.get(c).regexp();
+		for (final Entry<String, CharTrie> entry : this.data.entrySet()) {
+			final String quoted = this.softQuote(entry.getKey());
+			if (entry.getValue() != null) {
+				final String recurse = entry.getValue().regexp();
 				if (recurse != null) {
 					alt.add(quoted + recurse);
 				} else {
