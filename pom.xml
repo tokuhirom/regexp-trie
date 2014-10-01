@@ -19,6 +19,14 @@
 		<developerConnection>scm:git:git@github.com:tokuhirom/regexp-trie.git</developerConnection>
 	</scm>
 
+
+      <repositories>
+          <repository>
+              <id>tokuhirom</id>
+              <url>https://tokuhirom.github.io/maven/releases/</url>
+          </repository>
+      </repositories>
+
 	<distributionManagement>
 		<repository>
 			<id>repo</id>
