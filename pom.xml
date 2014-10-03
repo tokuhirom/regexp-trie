@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>me.geso</groupId>
 	<artifactId>regexp-trie</artifactId>
-	<version>0.1.9-SNAPSHOT</version>
+	<version>0.1.9</version>
 	<name>regexp-trie</name>
 	<description>regexp-trie</description>
 
@@ -16,7 +16,7 @@
 		<url>https://github.com/tokuhirom/regexp-trie/</url>
 		<connection>scm:git:git://github.com/tokuhirom/regexp-trie.git</connection>
 		<developerConnection>scm:git:git@github.com:tokuhirom/regexp-trie.git</developerConnection>
-	  <tag>regexp-trie-0.1.2</tag>
+	  <tag>regexp-trie-0.1.9</tag>
   </scm>
 
 
