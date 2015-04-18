@@ -40,51 +40,53 @@ signing {
     sign configurations.archives
 }
 
-
-uploadArchives {
-  repositories {
-    mavenDeployer {
-      beforeDeployment {
-        MavenDeployment deployment -> signing.signPom(deployment)
-      }
-
-      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-        authentication(userName: ossrhUsername, password: ossrhPassword)
-      }
-
-      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-        authentication(userName: ossrhUsername, password: ossrhPassword)
-      }
-
-      pom.project {
-        name 'regexp-trie'
-        packaging 'jar'
-        // optionally artifactId can be defined here 
-        description 'Trie based regexp generator'
-        url 'http://github.com/tokuhirom/regexp-trie/'
-
-        scm {
-          url 'https://github.com/tokuhirom/regexp-trie/'
-          connection 'scm:git:git://github.com/tokuhirom/regexp-trie.git'
-          developerConnection 'scm:git:git@github.com:tokuhirom/regexp-trie.git'
+if (System.env['CI']) {
+  println("Run on CI")
+} else {
+  uploadArchives {
+    repositories {
+      mavenDeployer {
+        beforeDeployment {
+          MavenDeployment deployment -> signing.signPom(deployment)
         }
 
-        licenses {
-          license {
-            name 'MIT License'
-            url 'http://www.opensource.org/licenses/mit-license.php'
+        repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+          authentication(userName: ossrhUsername, password: ossrhPassword)
+        }
+
+        snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+          authentication(userName: ossrhUsername, password: ossrhPassword)
+        }
+
+        pom.project {
+          name 'regexp-trie'
+          packaging 'jar'
+          // optionally artifactId can be defined here 
+          description 'Trie based regexp generator'
+          url 'http://github.com/tokuhirom/regexp-trie/'
+
+          scm {
+            url 'https://github.com/tokuhirom/regexp-trie/'
+            connection 'scm:git:git://github.com/tokuhirom/regexp-trie.git'
+            developerConnection 'scm:git:git@github.com:tokuhirom/regexp-trie.git'
           }
-        }
 
-        developers {
-          developer {
-            id 'tokuhirom'
-            name 'Tokuhiro Matsuno'
-            email 'tokuhirom@gmail.com'
+          licenses {
+            license {
+              name 'MIT License'
+              url 'http://www.opensource.org/licenses/mit-license.php'
+            }
+          }
+
+          developers {
+            developer {
+              id 'tokuhirom'
+              name 'Tokuhiro Matsuno'
+              email 'tokuhirom@gmail.com'
+            }
           }
         }
       }
     }
   }
 }
-
