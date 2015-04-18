@@ -2,4 +2,4 @@ language: java
 sudo: false
 jdk:
   - oraclejdk8
-install: ./gradlew build
+install: ./gradlew check
