@@ -6,7 +6,7 @@ apply plugin: 'checkstyle'
 
 group = 'me.geso'
 archivesBaseName = "regexp-trie"
-version = '0.1.11-SNAPSHOT'
+version = '1.0.0'
 
 description = """regexp-trie"""
 
