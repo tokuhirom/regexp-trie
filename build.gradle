@@ -1,18 +1,43 @@
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.5.1"
+  }
+}
+
+plugins {
+    id 'pl.allegro.tech.build.axion-release' version '1.2.3'
+}
+
 apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'signing'
 apply plugin: 'findbugs'
-apply plugin: 'checkstyle'
+
+scmVersion {
+    tag {
+        prefix = 'regexp-trie'
+    }
+}
+
+project.version = scmVersion.version
 
 group = 'me.geso'
 archivesBaseName = "regexp-trie"
-version = '1.0.0'
 
 description = """regexp-trie"""
 
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
+
+apply plugin: 'io.codearte.nexus-staging'
+
+nexusStaging {
+  packageGroup = "me.geso"
+}
 
 repositories {
      maven { url "http://repo.maven.apache.org/maven2" }
