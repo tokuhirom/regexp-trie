@@ -4,20 +4,17 @@ regexp-trie
 [![Build Status](https://travis-ci.org/tokuhirom/regexp-trie.svg?branch=master)](https://travis-ci.org/tokuhirom/regexp-trie)
 [![javadoc.io](https://javadocio-badges.herokuapp.com/me.geso/regexp-trie/badge.svg)](https://javadocio-badges.herokuapp.com/me.geso/regexp-trie)
 
-
 Create complex regular expression from tokens by Trie.
 
-## SYNOPSIS in GROOVY
+## SYNOPSIS
 
-	@GrabResolver(name='tokuhirom', root='https://tokuhirom.github.io/maven/releases/')
-	@Grab('me.geso:regexp-trie:0.0.2')
-	import me.geso.regexp_trie.RegexpTrie;
-
-	def trie = new RegexpTrie();
-	["foobar", "fooxar", "foozap", "fooza"].forEach {
-		trie.add(it);
-	}
-	println(trie.regexp()) // → (?:foo(?:bar|xar|zap?))
+		RegexpTrie trie = new RegexpTrie();
+		trie.add("foobar");
+		trie.add("fooxar");
+		trie.add("foozap");
+		trie.add("fooza");
+		System.out.println(trie.regexp());
+		// → (?:foo(?:bar|xar|zap?))
 
 ## DESCRIPTION
 
@@ -28,21 +25,14 @@ You can only add plain strings into regular expression. You can't use meta chara
 
 ## Using with Maven
 
+This artifact is available on maven central.
 You need to add following snippet into your pom.xml.
 
-	<repositories>
-	  <repository>
-		<id>tokuhirom</id>
-		<url>https://tokuhirom.github.io/maven/releases/</url>
-	  </repository>
-	</repositories>
-	<dependencies>
-	  <dependency>
-		<groupId>me.geso</groupId>
-		<artifactId>regexp-trie</artifactId>
-		<version>0.0.1</version>
-	  </dependency>
-	</dependencies>
+    <dependency>
+      <groupId>me.geso</groupId>
+      <artifactId>regexp-trie</artifactId>
+      <version>LATEST_VERSION</version>
+    </dependency>
 
 ## COPYRIGHT AND LICENSE
 
