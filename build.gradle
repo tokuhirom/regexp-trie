@@ -45,9 +45,7 @@ signing {
     sign configurations.archives
 }
 
-if (System.env['CI']) {
-  println("Run on CI")
-} else {
+try {
   uploadArchives {
     repositories {
       mavenDeployer {
@@ -93,5 +91,11 @@ if (System.env['CI']) {
         }
       }
     }
+  }
+} catch (MissingPropertyException mpe) {
+  if (System.env['CI']) {
+    println("Run on CI");
+  } else {
+    throw mpe;
   }
 }
