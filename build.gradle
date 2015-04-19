@@ -22,10 +22,6 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version:'4.11'
 }
 
-checkstyle {
-  ignoreFailures = false
-}
-
 findbugsMain {
   ignoreFailures = false
   effort = "max"
