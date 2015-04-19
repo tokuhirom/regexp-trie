@@ -31,7 +31,7 @@ import java.util.regex.Pattern;
 
 class CharTrie {
 
-	private final static Pattern nonSpecialCharsPattern = Pattern
+	private final static Pattern NON_SPECIAL_CHARS_PATTERN = Pattern
 			.compile("\\A(?:[^\\\\x00-\\\\x7F]|[A-Za-z0-9_])+\\z");
 	private final Map<String, CharTrie> data = new TreeMap<>();
 
@@ -97,7 +97,7 @@ class CharTrie {
 	}
 
 	private String softQuote(String s) {
-		if (nonSpecialCharsPattern.matcher(s).matches()) {
+		if (NON_SPECIAL_CHARS_PATTERN.matcher(s).matches()) {
 			// Do not quote basic alphanumeric characters for redability.
 			return s;
 		} else {
