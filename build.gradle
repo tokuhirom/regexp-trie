@@ -3,7 +3,6 @@ buildscript {
     mavenCentral()
   }
   dependencies {
-    classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.5.1"
     classpath 'com.adaptc.gradle:nexus-workflow:0.6'
   }
 }
