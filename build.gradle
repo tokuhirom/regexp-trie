@@ -35,10 +35,6 @@ description = """regexp-trie"""
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
-nexusStaging {
-  packageGroup = "me.geso"
-}
-
 repositories {
      maven { url "http://repo.maven.apache.org/maven2" }
 }
