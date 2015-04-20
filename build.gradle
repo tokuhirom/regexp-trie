@@ -7,10 +7,6 @@ buildscript {
   }
 }
 
-plugins {
-    id 'pl.allegro.tech.build.axion-release' version '1.2.3'
-}
-
 apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'signing'
@@ -18,13 +14,7 @@ apply plugin: 'findbugs'
 
 apply plugin: 'nexus-workflow'
 
-scmVersion {
-    tag {
-        prefix = 'regexp-trie'
-    }
-}
-
-project.version = scmVersion.version
+project.version = '1.0.5'
 
 group = 'me.geso'
 archivesBaseName = "regexp-trie"
