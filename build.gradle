@@ -26,7 +26,7 @@ sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
 repositories {
-     maven { url "http://repo.maven.apache.org/maven2" }
+     maven { url "https://repo.maven.apache.org/maven2" }
 }
 
 dependencies {
@@ -77,7 +77,7 @@ try {
           packaging 'jar'
           // optionally artifactId can be defined here 
           description 'Trie based regexp generator'
-          url 'http://github.com/tokuhirom/regexp-trie/'
+          url 'https://github.com/tokuhirom/regexp-trie/'
 
           scm {
             url 'https://github.com/tokuhirom/regexp-trie/'
@@ -88,7 +88,7 @@ try {
           licenses {
             license {
               name 'MIT License'
-              url 'http://www.opensource.org/licenses/mit-license.php'
+              url 'https://www.opensource.org/licenses/mit-license.php'
             }
           }
 
