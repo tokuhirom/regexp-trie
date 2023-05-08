@@ -9,9 +9,9 @@
 
 plugins {
     id("java")
+    id("com.github.spotbugs") version "5.0.14"
 }
 //apply plugin: "maven"
-//apply plugin: "findbugs" // TODO use spotbugs
 
 //apply plugin: "nexus-workflow"
 
