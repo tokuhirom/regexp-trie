@@ -28,7 +28,10 @@ dependencies {
 
 nexusPublishing {
     repositories {
-        sonatype()
+        sonatype {
+            username = System.getenv("MAVEN_USERNAME")
+            password = System.getenv("MAVEN_PASSWORD")
+        }
     }
 }
 
