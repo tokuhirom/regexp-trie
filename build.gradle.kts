@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("maven-publish")
     id("com.github.spotbugs") version "5.0.14"
 }
 
@@ -24,55 +25,51 @@ dependencies {
     testImplementation("junit:junit:4.11")
 }
 
-//if (project.hasProperty("ossrhUsername")) {
-//  try {
-//    uploadArchives {
-//      repositories {
-//        mavenDeployer {
-//          repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-//            authentication(userName: ossrhUsername, password: ossrhPassword)
-//          }
-//
-//          snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-//            authentication(userName: ossrhUsername, password: ossrhPassword)
-//          }
-//
-//          pom.project {
-//            name "regexp-trie"
-//            packaging "jar"
-//            // optionally artifactId can be defined here
-//            description "Trie based regexp generator"
-//            url "https://github.com/tokuhirom/regexp-trie/"
-//
-//            scm {
-//              url "https://github.com/tokuhirom/regexp-trie/"
-//              connection "scm:git:git://github.com/tokuhirom/regexp-trie.git"
-//              developerConnection "scm:git:git@github.com:tokuhirom/regexp-trie.git"
-//            }
-//
-//            licenses {
-//              license {
-//                name "MIT License"
-//                url "https://www.opensource.org/licenses/mit-license.php"
-//              }
-//            }
-//
-//            developers {
-//              developer {
-//                id "tokuhirom"
-//                name "Tokuhiro Matsuno"
-//                email "tokuhirom@gmail.com"
-//              }
-//            }
-//          }
-//        }
-//      }
-//    }
-//  } catch (MissingPropertyException mpe) {
-//    if (System.env["CI"]) {
-//      println("Run on CI");
-//    } else {
-//      throw mpe;
-//    }
-//  }
-//}
+configure<PublishingExtension> {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+
+            pom {
+                name.set(project.name)
+                packaging = "jar"
+                if (project.description != null) {
+                    description.set(project.description)
+                } else {
+                    description.set("Trie based regexp generator")
+                }
+                url.set("https://github.com/tokuhirom/regexp-trie")
+
+                scm {
+                    url.set("scm:git@github.com:tokuhirom/regexp-trie.git")
+                    connection.set("scm:git@github.com:tokuhirom/regexp-trie.git")
+                    developerConnection.set("scm:git@github.com:tokuhirom/regexp-trie.git")
+                }
+                licenses {
+                    license {
+                        name.set("MIT License")
+                        url.set("https://www.opensource.org/licenses/mit-license.php")
+                    }
+                }
+                developers {
+                    developer {
+                        id.set("tokuhirom")
+                        name.set("Tokuhiro Matsuno")
+                        email.set("tokuhirom@gmail.com")
+                    }
+                }
+            }
+        }
+        repositories {
+            maven {
+                url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
+                if (project.hasProperty("sonatypeUsername")) {
+                    credentials {
+                        username = properties["sonatypeUsername"] as String
+                        password = properties["sonatypePassword"] as String
+                    }
+                }
+            }
+        }
+    }
+}
