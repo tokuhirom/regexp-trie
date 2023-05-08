@@ -1,17 +1,17 @@
-buildscript {
-  repositories {
-    mavenCentral()
-  }
-  dependencies {
-    classpath 'com.adaptc.gradle:nexus-workflow:0.6'
-  }
-}
+//buildscript {
+//  repositories {
+//    mavenCentral()
+//  }
+//  dependencies {
+//    classpath 'com.adaptc.gradle:nexus-workflow:0.6'
+//  }
+//}
 
 apply plugin: 'java'
-apply plugin: 'maven'
+//apply plugin: 'maven'
 //apply plugin: 'findbugs' // TODO use spotbugs
 
-apply plugin: 'nexus-workflow'
+//apply plugin: 'nexus-workflow'
 
 project.version = '1.0.5'
 
@@ -29,7 +29,7 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version:'4.11'
+    testImplementation group: 'junit', name: 'junit', version:'4.11'
 }
 
 /*
@@ -53,55 +53,55 @@ artifacts {
     archives javadocJar, sourcesJar
 }
 
-if (project.hasProperty("ossrhUsername")) {
-  try {
-    uploadArchives {
-      repositories {
-        mavenDeployer {
-          repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-            authentication(userName: ossrhUsername, password: ossrhPassword)
-          }
-
-          snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-            authentication(userName: ossrhUsername, password: ossrhPassword)
-          }
-
-          pom.project {
-            name 'regexp-trie'
-            packaging 'jar'
-            // optionally artifactId can be defined here
-            description 'Trie based regexp generator'
-            url 'https://github.com/tokuhirom/regexp-trie/'
-
-            scm {
-              url 'https://github.com/tokuhirom/regexp-trie/'
-              connection 'scm:git:git://github.com/tokuhirom/regexp-trie.git'
-              developerConnection 'scm:git:git@github.com:tokuhirom/regexp-trie.git'
-            }
-
-            licenses {
-              license {
-                name 'MIT License'
-                url 'https://www.opensource.org/licenses/mit-license.php'
-              }
-            }
-
-            developers {
-              developer {
-                id 'tokuhirom'
-                name 'Tokuhiro Matsuno'
-                email 'tokuhirom@gmail.com'
-              }
-            }
-          }
-        }
-      }
-    }
-  } catch (MissingPropertyException mpe) {
-    if (System.env['CI']) {
-      println("Run on CI");
-    } else {
-      throw mpe;
-    }
-  }
-}
+//if (project.hasProperty("ossrhUsername")) {
+//  try {
+//    uploadArchives {
+//      repositories {
+//        mavenDeployer {
+//          repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+//            authentication(userName: ossrhUsername, password: ossrhPassword)
+//          }
+//
+//          snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+//            authentication(userName: ossrhUsername, password: ossrhPassword)
+//          }
+//
+//          pom.project {
+//            name 'regexp-trie'
+//            packaging 'jar'
+//            // optionally artifactId can be defined here
+//            description 'Trie based regexp generator'
+//            url 'https://github.com/tokuhirom/regexp-trie/'
+//
+//            scm {
+//              url 'https://github.com/tokuhirom/regexp-trie/'
+//              connection 'scm:git:git://github.com/tokuhirom/regexp-trie.git'
+//              developerConnection 'scm:git:git@github.com:tokuhirom/regexp-trie.git'
+//            }
+//
+//            licenses {
+//              license {
+//                name 'MIT License'
+//                url 'https://www.opensource.org/licenses/mit-license.php'
+//              }
+//            }
+//
+//            developers {
+//              developer {
+//                id 'tokuhirom'
+//                name 'Tokuhiro Matsuno'
+//                email 'tokuhirom@gmail.com'
+//              }
+//            }
+//          }
+//        }
+//      }
+//    }
+//  } catch (MissingPropertyException mpe) {
+//    if (System.env['CI']) {
+//      println("Run on CI");
+//    } else {
+//      throw mpe;
+//    }
+//  }
+//}
