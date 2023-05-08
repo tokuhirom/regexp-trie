@@ -5,7 +5,7 @@ plugins {
     id("io.github.gradle-nexus.publish-plugin") version "1.3.0"
 }
 
-project.version = "1.0.5"
+version = System.getenv("LIB_VERSION")
 
 group = "me.geso"
 
@@ -66,8 +66,8 @@ configure<PublishingExtension> {
                 url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
                 if (project.hasProperty("sonatypeUsername")) {
                     credentials {
-                        username = properties["sonatypeUsername"] as String
-                        password = properties["sonatypePassword"] as String
+                        username = System.getenv("MAVEN_USERNAME")
+                        password = System.getenv("MAVEN_PASSWORD")
                     }
                 }
             }

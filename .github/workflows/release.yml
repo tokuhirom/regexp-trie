@@ -28,4 +28,4 @@ jobs:
         env:
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
-          SDK_VERSION: ${{ github.event.release.tag_name }}
+          LIB_VERSION: ${{ github.event.release.tag_name }}
