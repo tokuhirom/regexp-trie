@@ -3,33 +3,37 @@
 //    mavenCentral()
 //  }
 //  dependencies {
-//    classpath 'com.adaptc.gradle:nexus-workflow:0.6'
+//    classpath "com.adaptc.gradle:nexus-workflow:0.6"
 //  }
 //}
 
-apply plugin: 'java'
-//apply plugin: 'maven'
-//apply plugin: 'findbugs' // TODO use spotbugs
+plugins {
+    id("java")
+}
+//apply plugin: "maven"
+//apply plugin: "findbugs" // TODO use spotbugs
 
-//apply plugin: 'nexus-workflow'
+//apply plugin: "nexus-workflow"
 
-project.version = '1.0.5'
+project.version = "1.0.5"
 
-group = 'me.geso'
-archivesBaseName = "regexp-trie"
+group = "me.geso"
+//archivesBaseName = "regexp-trie"
 
 description = """regexp-trie"""
 
-[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+//[compileJava, compileTestJava]*.options*.encoding = "UTF-8"
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
 
 repositories {
-     maven { url "https://repo.maven.apache.org/maven2" }
+     mavenCentral()
 }
 
 dependencies {
-    testImplementation group: 'junit', name: 'junit', version:'4.11'
+    testImplementation("junit:junit:4.11")
 }
 
 /*
@@ -40,12 +44,12 @@ findbugsMain {
  */
 
 //task javadocJar(type: Jar) {
-//    classifier = 'javadoc'
+//    classifier = "javadoc"
 //    from javadoc
 //}
 //
 //task sourcesJar(type: Jar) {
-//    classifier = 'sources'
+//    classifier = "sources"
 //    from sourceSets.main.allSource
 //}
 //
@@ -67,30 +71,30 @@ findbugsMain {
 //          }
 //
 //          pom.project {
-//            name 'regexp-trie'
-//            packaging 'jar'
+//            name "regexp-trie"
+//            packaging "jar"
 //            // optionally artifactId can be defined here
-//            description 'Trie based regexp generator'
-//            url 'https://github.com/tokuhirom/regexp-trie/'
+//            description "Trie based regexp generator"
+//            url "https://github.com/tokuhirom/regexp-trie/"
 //
 //            scm {
-//              url 'https://github.com/tokuhirom/regexp-trie/'
-//              connection 'scm:git:git://github.com/tokuhirom/regexp-trie.git'
-//              developerConnection 'scm:git:git@github.com:tokuhirom/regexp-trie.git'
+//              url "https://github.com/tokuhirom/regexp-trie/"
+//              connection "scm:git:git://github.com/tokuhirom/regexp-trie.git"
+//              developerConnection "scm:git:git@github.com:tokuhirom/regexp-trie.git"
 //            }
 //
 //            licenses {
 //              license {
-//                name 'MIT License'
-//                url 'https://www.opensource.org/licenses/mit-license.php'
+//                name "MIT License"
+//                url "https://www.opensource.org/licenses/mit-license.php"
 //              }
 //            }
 //
 //            developers {
 //              developer {
-//                id 'tokuhirom'
-//                name 'Tokuhiro Matsuno'
-//                email 'tokuhirom@gmail.com'
+//                id "tokuhirom"
+//                name "Tokuhiro Matsuno"
+//                email "tokuhirom@gmail.com"
 //              }
 //            }
 //          }
@@ -98,7 +102,7 @@ findbugsMain {
 //      }
 //    }
 //  } catch (MissingPropertyException mpe) {
-//    if (System.env['CI']) {
+//    if (System.env["CI"]) {
 //      println("Run on CI");
 //    } else {
 //      throw mpe;
