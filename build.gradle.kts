@@ -26,6 +26,12 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
 }
 
+nexusPublishing {
+    repositories {
+        sonatype()
+    }
+}
+
 configure<PublishingExtension> {
     publications {
         create<MavenPublication>("mavenJava") {
