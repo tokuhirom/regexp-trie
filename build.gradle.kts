@@ -2,6 +2,7 @@ plugins {
     id("java")
     id("maven-publish")
     id("com.github.spotbugs") version "5.0.14"
+    id("io.github.gradle-nexus.publish-plugin") version "1.3.0"
 }
 
 project.version = "1.0.5"
