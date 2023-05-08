@@ -22,7 +22,7 @@ repositories {
 }
 
 dependencies {
-    testImplementation("junit:junit:4.11")
+    testImplementation("junit:junit:4.13.2")
 }
 
 configure<PublishingExtension> {
