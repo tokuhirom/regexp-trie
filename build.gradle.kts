@@ -64,11 +64,9 @@ configure<PublishingExtension> {
         repositories {
             maven {
                 url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
-                if (project.hasProperty("sonatypeUsername")) {
-                    credentials {
-                        username = System.getenv("MAVEN_USERNAME")
-                        password = System.getenv("MAVEN_PASSWORD")
-                    }
+                credentials {
+                    username = System.getenv("MAVEN_USERNAME")
+                    password = System.getenv("MAVEN_PASSWORD")
                 }
             }
         }
