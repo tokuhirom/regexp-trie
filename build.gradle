@@ -9,7 +9,7 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'maven'
-apply plugin: 'findbugs'
+//apply plugin: 'findbugs' // TODO use spotbugs
 
 apply plugin: 'nexus-workflow'
 
@@ -32,10 +32,12 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version:'4.11'
 }
 
+/*
 findbugsMain {
   ignoreFailures = false
   effort = "max"
 }
+ */
 
 task javadocJar(type: Jar) {
     classifier = 'javadoc'
