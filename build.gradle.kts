@@ -1,31 +1,19 @@
-//buildscript {
-//  repositories {
-//    mavenCentral()
-//  }
-//  dependencies {
-//    classpath "com.adaptc.gradle:nexus-workflow:0.6"
-//  }
-//}
-
 plugins {
     id("java")
     id("com.github.spotbugs") version "5.0.14"
 }
-//apply plugin: "maven"
-
-//apply plugin: "nexus-workflow"
 
 project.version = "1.0.5"
 
 group = "me.geso"
-//archivesBaseName = "regexp-trie"
 
 description = """regexp-trie"""
 
-//[compileJava, compileTestJava]*.options*.encoding = "UTF-8"
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
+    withJavadocJar()
+    withSourcesJar()
 }
 
 repositories {
@@ -35,27 +23,6 @@ repositories {
 dependencies {
     testImplementation("junit:junit:4.11")
 }
-
-/*
-findbugsMain {
-  ignoreFailures = false
-  effort = "max"
-}
- */
-
-//task javadocJar(type: Jar) {
-//    classifier = "javadoc"
-//    from javadoc
-//}
-//
-//task sourcesJar(type: Jar) {
-//    classifier = "sources"
-//    from sourceSets.main.allSource
-//}
-//
-//artifacts {
-//    archives javadocJar, sourcesJar
-//}
 
 //if (project.hasProperty("ossrhUsername")) {
 //  try {
