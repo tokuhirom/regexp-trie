@@ -1,6 +1,7 @@
 plugins {
     id("java")
     id("maven-publish")
+    id("signing")
     id("com.github.spotbugs") version "5.0.14"
     id("io.github.gradle-nexus.publish-plugin") version "1.3.0"
 }
@@ -32,6 +33,18 @@ nexusPublishing {
             username.set(System.getenv("MAVEN_USERNAME"))
             password.set(System.getenv("MAVEN_PASSWORD"))
         }
+    }
+}
+
+val signingKeyId = rootProject.findProperty("signingKeyId") as String?
+val signingKey = rootProject.findProperty("signingKey") as String?
+val signingPassword = rootProject.findProperty("signingPassword") as String?
+
+signing {
+    if (System.getenv("CI") != null && signingKey != null) {
+        useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
+        setRequired({true})
+        sign(publishing.publications["mavenJava"])
     }
 }
 
