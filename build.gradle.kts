@@ -27,27 +27,6 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
 }
 
-nexusPublishing {
-    repositories {
-        sonatype {
-            username.set(System.getenv("MAVEN_USERNAME"))
-            password.set(System.getenv("MAVEN_PASSWORD"))
-        }
-    }
-}
-
-val signingKeyId = rootProject.findProperty("signingKeyId") as String?
-val signingKey = rootProject.findProperty("signingKey") as String?
-val signingPassword = rootProject.findProperty("signingPassword") as String?
-
-signing {
-    if (System.getenv("CI") != null && signingKey != null) {
-        useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
-        setRequired({true})
-        sign(publishing.publications["mavenJava"])
-    }
-}
-
 configure<PublishingExtension> {
     publications {
         create<MavenPublication>("mavenJava") {
@@ -94,3 +73,25 @@ configure<PublishingExtension> {
         }
     }
 }
+
+val signingKeyId = rootProject.findProperty("signingKeyId") as String?
+val signingKey = rootProject.findProperty("signingKey") as String?
+val signingPassword = rootProject.findProperty("signingPassword") as String?
+
+signing {
+    if (System.getenv("CI") != null && signingKey != null) {
+        useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
+        setRequired({true})
+        sign(publishing.publications["mavenJava"])
+    }
+}
+
+nexusPublishing {
+    repositories {
+        sonatype {
+            username.set(System.getenv("MAVEN_USERNAME"))
+            password.set(System.getenv("MAVEN_PASSWORD"))
+        }
+    }
+}
+
