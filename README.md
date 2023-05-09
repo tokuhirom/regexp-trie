@@ -1,9 +1,6 @@
 regexp-trie
 ===========
 
-[![Build Status](https://travis-ci.org/tokuhirom/regexp-trie.svg?branch=master)](https://travis-ci.org/tokuhirom/regexp-trie)
-[![javadoc.io](https://javadocio-badges.herokuapp.com/me.geso/regexp-trie/badge.svg)](https://javadocio-badges.herokuapp.com/me.geso/regexp-trie)
-
 Create complex regular expression from tokens by Trie.
 
 ## SYNOPSIS
