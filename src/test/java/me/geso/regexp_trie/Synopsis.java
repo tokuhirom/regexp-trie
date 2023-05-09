@@ -1,7 +1,6 @@
 package me.geso.regexp_trie;
 
-import org.junit.Test;
-import me.geso.regexp_trie.RegexpTrie;
+import org.junit.jupiter.api.Test;
 
 public class Synopsis {
 	@Test
